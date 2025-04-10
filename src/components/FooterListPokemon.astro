@@ -1,0 +1,48 @@
+---
+interface Props {
+  id: number;
+}
+
+let { id } = Astro.props;
+const visiblemin = id > 1 ? true : false;
+const visiblemax = id < 9 ? true : false;
+---
+
+<nav
+  class="flex flex-col items-center justify-between w-full align-center md:flex-row"
+>
+  <a
+    href={visiblemin ? `/pokemons/${+id - 1}` : undefined}
+    aria-disabled={!visiblemin}
+    tabindex={visiblemin ? "0" : "-1"}
+    class:list={[
+      "bg-blue-600 hover:bg-blue-700 text-xs rounded-lg shadow-md transition-colors duration-150 block p-6 w-auto mx-auto mt-5",
+      {
+        "bg-blue-600 hover:bg-blue-700": visiblemin,
+        "bg-gray-400 cursor-not-allowed opacity-50": !visiblemin,
+      },
+    ]}
+  >
+    Anterior pokemon
+  </a>
+  <a
+    href="/"
+    class="bg-blue-600 hover:bg-blue-700 text-white text-xs rounded-lg shadow-md transition-colors duration-150 block p-6 w-auto mx-auto mt-5"
+  >
+    Ir al Listado de Pokemon
+  </a>
+  <a
+    href={visiblemax ? `/pokemons/${+id + 1}` : undefined}
+    aria-disabled={!visiblemax}
+    tabindex={visiblemax ? "0" : "-1"}
+    class:list={[
+      "bg-blue-600 hover:bg-blue-700 text-xs rounded-lg shadow-md transition-colors duration-150 block p-6 w-auto mx-auto mt-5",
+      {
+        "bg-blue-600 hover:bg-blue-700": visiblemax,
+        "bg-gray-400 cursor-not-allowed opacity-50": !visiblemax,
+      },
+    ]}
+  >
+    Siguiente pokemon
+  </a>
+</nav>

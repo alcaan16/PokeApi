@@ -1,0 +1,68 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { allPokemonDetails, getPokemonById } from "../../services/pokemon";
+import { type PokemonDetail } from "../../types/api.ts";
+import FooterListPokemon from "../../components/FooterListPokemon.astro";
+
+
+const { id } = Astro.params;
+
+let pokemon = null;
+if (id) {
+  pokemon = (await getPokemonById({ id: String(id) })) as PokemonDetail;
+}
+
+export async function getStaticPaths() {
+  const pokemons = await allPokemonDetails();
+  return pokemons.map((poke) => ({
+    params: { id: poke.id },
+  }));
+
+}
+---
+
+<Layout title={`Pokemon Nº ${id}`}>
+  {
+    pokemon ? (
+      <article
+        class="max-w-md mx-auto bg-gray-900 border-3 border-fuchsia-800 rounded-4xl shadow-
+      xl p-6 mt-10 space-y-4 overflow-hidden transition-transform duration-300 hover:scale-105 cursor-auto
+"
+      >
+        <img
+          class="mx-auto w-30 h-auto object-contain"
+          src={pokemon.sprites.other?.["official-artwork"].front_default}
+          alt={`Artwork de ${pokemon.name}`}
+          width="200"
+        />
+        <p class="text-xl font-bold text-center">
+          <strong>Id:</strong> {pokemon.id}
+        </p>
+        <p class="text-xl font-bold text-center uppercase">
+          <strong>Nombre:</strong> {pokemon.name}
+        </p>
+
+        <ul class="text-sm space-y-1">
+          <li>
+            <strong>Id:</strong> {pokemon.id}
+          </li>
+          <li>
+            <strong>Último grito:</strong> {pokemon.cries.latest}
+          </li>
+          <li>
+            <strong>Especie:</strong> {pokemon.species.name}
+          </li>
+          <li>
+            <strong>Primera habilidad:</strong> {pokemon.moves[0].move.name}
+          </li>
+          <li>
+            <strong>Encuentros:</strong> {pokemon.location_area_encounters}
+          </li>
+        </ul>
+      </article>
+    ) : (
+      <p class="text-center text-red-600">Pokémon no encontrado</p>
+    )
+  }
+  <FooterListPokemon id={id} />
+</Layout>

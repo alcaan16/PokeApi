@@ -1,0 +1,92 @@
+---
+import HeaderButton from "./HeaderButton.astro";
+---
+
+<header class="py-4 px-4 mx-auto max-w-xl lg:py-8 lg:px-6">
+  <div class="mx-auto text-center mb-8 lg:mb-16">
+    <h2 class="mb-4 text-3xl tracking-tight font-extrabold text-red-400">
+      Curso de Astro
+    </h2>
+    <p class="font-light text-gray-50 sm:text-xl dark:text-gray-30">
+      --ALCAAN16--
+    </p>
+  </div>
+  <nav
+    class="flex flex-col items-center justify-between w-full align-center md:flex-row"
+  >
+    <HeaderButton
+      class="text-white"
+      href="/"
+      ><svg
+        slot="before"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-rocket"
+        ><path
+          stroke="none"
+          d="M0 0h24v24H0z"
+          fill="none"
+        ></path><path
+          d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"
+        ></path><path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3"></path><path
+          d="M15 9m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path></svg
+      >Listado de pokemon</HeaderButton
+    >
+    <HeaderButton
+      id = 1
+      class="text-white"
+      href="/prueba"
+      ><svg
+        slot="before"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-alarm-off"
+        ><path
+          stroke="none"
+          d="M0 0h24v24H0z"
+          fill="none"
+        ></path><path
+          d="M7.587 7.566a7 7 0 1 0 9.833 9.864m1.35 -2.645a7 7 0 0 0 -8.536 -8.56"
+        ></path><path d="M12 12v1h1"></path><path d="M5.261 5.265l-1.011 .735"
+        ></path><path d="M17 4l2.75 2"></path><path d="M3 3l18 18"></path></svg
+      >
+      Mas antiguos</HeaderButton
+    >
+    <HeaderButton
+      class="text-white"
+      href="/about"
+    >
+      <svg
+        slot="before"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-info-square-rounded"
+        ><path
+          stroke="none"
+          d="M0 0h24v24H0z"
+          fill="none"
+        ></path><path d="M12 9h.01"></path><path d="M11 12h1v4h1"></path><path
+          d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"
+        ></path></svg
+      > Sobre el proyecto</HeaderButton
+    >
+  </nav>
+</header>

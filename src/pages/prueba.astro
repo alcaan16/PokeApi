@@ -1,0 +1,38 @@
+---
+import Layout from "../layouts/Layout.astro";
+import {
+  allPokemonDetails,
+  getPokemonById,
+  getSpecies,
+  getEvolution,
+} from "../services/pokemon";
+import { type PokemonDetail, type Species, type EvolutionChainResponse, type PokemonSpecies, } from "../types/api.ts";
+
+const id = 1;
+let pokemon = null;
+if (id) {
+  pokemon = (await getPokemonById({ id: String(id) })) as PokemonDetail;
+}
+
+const urlSpecies = pokemon?.species.url;
+let dataSpecies = null;
+dataSpecies = (await getSpecies({ url: String(urlSpecies) }));
+
+const urlEvolution = dataSpecies.evolution_chain.url;
+let dataEvolution = null;
+dataEvolution = (await getEvolution({ url: String(urlEvolution) })) as EvolutionChainResponse;
+
+
+
+console.log(dataEvolution.chain.evolves_to[0].species)
+---
+
+<Layout title={`Pokemon Nº ${id}`}>
+  hola
+  <h1>
+    {pokemon?.name}
+    {pokemon?.species.name}
+    {pokemon?.species.url}
+    {dataSpecies.evolution_chain.url}
+  </h1>
+</Layout>

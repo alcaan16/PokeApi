@@ -1,0 +1,20 @@
+---
+import CardPokemon from "./CardPokemon.astro";
+import { allPokemonDetails } from "../services/pokemon";
+
+const pokemons = await allPokemonDetails();
+console.log(pokemons);
+---
+
+<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+  {
+    pokemons.map((pokemon) => (
+      <CardPokemon
+        name={pokemon.name}
+        id={pokemon.id}
+        img={pokemon.sprites.other?.["official-artwork"].front_default}
+        url={pokemon.species.url}
+      />
+    ))
+  }
+</div>
