@@ -1,40 +1,40 @@
 ---
+import { typeColors } from "../utils/typeColors";
+
 interface Props {
   name: string;
-  img: string | undefined;
-  url: string;
   id: number;
+  img?: string;
+  types: string[];
 }
-const { name, img, url, id } = Astro.props;
-//href={`/launch/${name}`}
-//href={url}
+
+const { id, name, img, types } = Astro.props;
+const primaryTypeKey = types[0] ?? 'Desconocido';
+const bgClass = typeColors[primaryTypeKey] ?? 'bg-gray-800';
+console.log(primaryTypeKey)
 ---
 
 <a
   href={`/pokemons/${id}`}
-  class="rounded-4xl border shadow-md bg-gray-800 border-gray-700 hover:scale-105 hover:bg-gray-700 hover:border-red-500 transition flex flex-col"
+  class={`flex flex-col items-center rounded-4xl border shadow-md p-4 transition transform hover:scale-105 ${bgClass} border-gray-700`}
+
 >
-  <picture class="flex justify-center p-4">
-    <img
-      class="mb-5 rounded-lg"
-      src={img}
-      alt={`Artwork de ${name}`}
-      width="150
-      "
-    />
-  </picture>
+  {
+    img && (
+      <picture class="flex justify-center p-4">
+        <img class="mb-5 rounded-lg" src={img} alt={`Artwork de ${name}`} width="150" />
+      </picture>
+    )
+  }
 
   <header class="p-4 flex flex-col items-center text-center">
-    <p class="mb-4 font-light text-gray-400">
+    <p class="mb-4 font-light text-black">
       ID: {id}
     </p>
-    <h2 class="my-2 text-2xl font-bold tracking-tight text-white">
+    <h2 class="my-2 text-2xl font-bold tracking-tight text-black">
       <p>Nombre Pokemon:</p>
       <p>{name.toUpperCase()}</p>
     </h2>
-
-    <p class="mb-4 font-light text-gray-400">
-      Url: {url}
-    </p>
+    <p class="text-sm text-black">Tipos: {types.join(', ')}</p>
   </header>
 </a>

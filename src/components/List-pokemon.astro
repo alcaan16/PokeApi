@@ -1,19 +1,29 @@
 ---
 import CardPokemon from "./CardPokemon.astro";
-import { allPokemonDetails } from "../services/pokemon";
+import { allPokemonDetails} from "../services/pokemon";
+import { typeTranslations } from "../utils/typeTranslations";
 
 const pokemons = await allPokemonDetails();
-console.log(pokemons);
+
+const pokemonsWithSpanishTypes = pokemons.map(pokemon => {
+  const spanishTypes = pokemon.types.map(({ type }) =>
+    typeTranslations[type.name] ?? type.name
+  );
+  return { ...pokemon, spanishTypes };
+});
+
+console.log(pokemonsWithSpanishTypes);
+
 ---
 
 <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
   {
-    pokemons.map((pokemon) => (
+    pokemonsWithSpanishTypes.map((pokemon) => (
       <CardPokemon
         name={pokemon.name}
         id={pokemon.id}
-        img={pokemon.sprites.other?.["official-artwork"].front_default}
-        url={pokemon.species.url}
+        img={pokemon.sprites.other?.['official-artwork'].front_default || '/default-pokemon.png'}
+        types={pokemon.spanishTypes}
       />
     ))
   }
