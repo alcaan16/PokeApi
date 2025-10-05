@@ -1,9 +1,8 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { allPokemonDetails, getPokemonById } from "../../services/pokemon";
-import { type PokemonDetail } from "../../types/api.ts";
-import FooterListPokemon from "../../components/FooterListPokemon.astro";
-
+import Layout from '../../layouts/Layout.astro';
+import { allPokemonDetails, getPokemonById } from '../../services/pokemon';
+import { type PokemonDetail } from '../../types/api.ts';
+import FooterListPokemon from '../../components/FooterListPokemon.astro';
 
 const { id } = Astro.params;
 
@@ -17,52 +16,106 @@ export async function getStaticPaths() {
   return pokemons.map((poke) => ({
     params: { id: poke.id },
   }));
-
 }
 ---
 
 <Layout title={`Pokemon Nº ${id}`}>
-  {
-    pokemon ? (
-      <article
-        class="max-w-md mx-auto bg-gray-900 border-3 border-fuchsia-800 rounded-4xl shadow-
-      xl p-6 mt-10 space-y-4 overflow-hidden transition-transform duration-300 hover:scale-105 cursor-auto
-"
-      >
-        <img
-          class="mx-auto w-30 h-auto object-contain"
-          src={pokemon.sprites.other?.["official-artwork"].front_default}
-          alt={`Artwork de ${pokemon.name}`}
-          width="200"
-        />
-        <p class="text-xl font-bold text-center">
-          <strong>Id:</strong> {pokemon.id}
-        </p>
-        <p class="text-xl font-bold text-center uppercase">
-          <strong>Nombre:</strong> {pokemon.name}
-        </p>
+  <div class="h-full flex flex-col">
+    <div class="flex-1 flex items-center justify-center p-4">
+      {
+        pokemon ? (
+          <article class="w-full max-w-2xl bg-gradient-to-b from-gray-900 to-gray-800 border-4 border-fuchsia-600 rounded-3xl shadow-2xl p-4 grid grid-rows-[auto_1fr] gap-4 transition-all duration-300 hover:border-fuchsia-400">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative">
+                <div class="absolute top-0 left-0 bg-fuchsia-600 text-white px-3 py-1 rounded-br-xl rounded-tl-2xl font-bold text-sm">
+                  #{pokemon.id.toString().padStart(3, '0')}
+                </div>
+                <img
+                  class="w-full h-48 object-contain filter drop-shadow-lg"
+                  src={pokemon.sprites.other?.['official-artwork'].front_default}
+                  alt={`Artwork de ${pokemon.name}`}
+                  width="192"
+                  height="192"
+                />
+              </div>
 
-        <ul class="text-sm space-y-1">
-          <li>
-            <strong>Id:</strong> {pokemon.id}
-          </li>
-          <li>
-            <strong>Último grito:</strong> {pokemon.cries.latest}
-          </li>
-          <li>
-            <strong>Especie:</strong> {pokemon.species.name}
-          </li>
-          <li>
-            <strong>Primera habilidad:</strong> {pokemon.moves[0].move.name}
-          </li>
-          <li>
-            <strong>Encuentros:</strong> {pokemon.location_area_encounters}
-          </li>
-        </ul>
-      </article>
-    ) : (
-      <p class="text-center text-red-600">Pokémon no encontrado</p>
-    )
-  }
-  <FooterListPokemon id={id} />
+              <div class="flex flex-col justify-center space-y-3">
+                <h1 class="text-2xl font-bold uppercase tracking-wider text-fuchsia-400 text-center">
+                  {pokemon.name}
+                </h1>
+                <div class="flex flex-wrap justify-center gap-2">
+                  {pokemon.types.map((type) => (
+                    <span
+                      class={`px-3 py-1 rounded-full text-sm font-semibold bg-${type.type.name} text-white`}
+                    >
+                      {type.type.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 text-xs">
+              <div>
+                <h2 class="text-sm font-bold text-fuchsia-400 uppercase mb-2">Info</h2>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-1">
+                  <div>
+                    <span class="text-gray-400">Altura:</span>
+                    <span class="ml-1">{pokemon.height / 10}m</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-400">Peso:</span>
+                    <span class="ml-1">{pokemon.weight / 10}kg</span>
+                  </div>
+                  <div class="col-span-2">
+                    <span class="text-gray-400">Exp. base:</span>
+                    <span class="ml-1">{pokemon.base_experience}</span>
+                  </div>
+                  <div class="col-span-2 mt-2">
+                    <h3 class="text-sm font-bold text-fuchsia-400 uppercase mb-1">Habilidades</h3>
+                    <ul class="space-y-1">
+                      {pokemon.abilities.map((ability) => (
+                        <li class="flex items-center bg-gray-800/50 px-2 py-1 rounded">
+                          <div class="w-1.5 h-1.5 bg-fuchsia-500 rounded-full mr-2" />
+                          <span class="text-gray-200">{ability.ability?.name}</span>
+                          {ability.is_hidden && (
+                            <span class="text-[10px] text-fuchsia-400 ml-2 px-1.5 py-0.5 bg-fuchsia-950/30 rounded-full">
+                              oculta
+                            </span>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h2 class="text-sm font-bold text-fuchsia-400 uppercase mb-2">Stats</h2>
+                <div class="space-y-1">
+                  {pokemon.stats.map((stat) => (
+                    <div>
+                      <div class="flex justify-between text-[10px] leading-none mb-1">
+                        <span class="text-gray-400">{stat.stat.name}</span>
+                        <span>{stat.base_stat}</span>
+                      </div>
+                      <div class="w-full bg-gray-700 rounded-full h-1.5">
+                        <div
+                          class="bg-fuchsia-500 h-1.5 rounded-full transition-all duration-500"
+                          style={`width: ${(stat.base_stat / 255) * 100}%`}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </article>
+        ) : (
+          <p class="text-center text-red-600">Pokémon no encontrado</p>
+        )
+      }
+    </div>
+    <FooterListPokemon id={id} />
+  </div>
 </Layout>
