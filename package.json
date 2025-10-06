@@ -1,14 +1,23 @@
 {
   "name": "pokeapi",
-  "type": "module",
   "version": "0.0.1",
+  "description": "Proyecto de PokeAPI con Astro y Tailwind CSS",
+  "type": "module",
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "astro dev",
+    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "clean": "Remove-Item -Recurse -Force .astro, dist",
+    "check": "astro check"
   },
   "dependencies": {
     "astro": "^5.6.1"
@@ -16,8 +25,8 @@
   "devDependencies": {
     "@astrojs/tailwind": "^5.1.5",
     "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6",
-    "prettier": "^3.5.3",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
     "tailwindcss": "^3.4.18"
   }
 }

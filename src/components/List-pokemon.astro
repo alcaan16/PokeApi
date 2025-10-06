@@ -1,19 +1,14 @@
 ---
-import CardPokemon from "./CardPokemon.astro";
-import { allPokemonDetails} from "../services/pokemon";
-import { typeTranslations } from "../utils/typeTranslations";
+import CardPokemon from './CardPokemon.astro';
+import { allPokemonDetails } from '../services/pokemon';
+import { typeTranslations } from '../utils/typeTranslations';
 
 const pokemons = await allPokemonDetails();
 
-const pokemonsWithSpanishTypes = pokemons.map(pokemon => {
-  const spanishTypes = pokemon.types.map(({ type }) =>
-    typeTranslations[type.name] ?? type.name
-  );
+const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
+  const spanishTypes = pokemon.types.map(({ type }) => typeTranslations[type.name] ?? type.name);
   return { ...pokemon, spanishTypes };
 });
-
-console.log(pokemonsWithSpanishTypes);
-
 ---
 
 <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
