@@ -11,15 +11,229 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
 });
 ---
 
-<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-  {
-    pokemonsWithSpanishTypes.map((pokemon) => (
-      <CardPokemon
-        name={pokemon.name}
-        id={pokemon.id}
-        img={pokemon.sprites.other?.['official-artwork'].front_default || '/default-pokemon.png'}
-        types={pokemon.spanishTypes}
-      />
-    ))
-  }
+<div class="w-full">
+  <!-- Barra de búsqueda -->
+  <div
+    class="sticky top-0 z-20 bg-slate-800/80 backdrop-blur-md border-b border-slate-700 mb-8 py-6"
+  >
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <svg
+            class="h-5 w-5 text-slate-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            ></path>
+          </svg>
+        </div>
+        <input
+          type="text"
+          id="pokemon-search"
+          placeholder="Buscar Pokémon por nombre o ID..."
+          class="block w-full pl-12 pr-4 py-4 text-white bg-slate-700/50 border border-slate-600 rounded-2xl
+                 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                 transition-all duration-300 text-lg backdrop-blur-sm"
+        />
+        <button
+          id="clear-search"
+          class="absolute inset-y-0 right-0 pr-4 flex items-center opacity-0 transition-opacity duration-200 hover:text-white text-slate-400"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <div
+        id="search-stats"
+        class="mt-3 text-center"
+      >
+        <span
+          class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-slate-700/50 text-slate-300 border border-slate-600"
+        >
+          <span id="results-count">Cargando...</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid de Pokémon -->
+  <div
+    id="pokemon-grid"
+    class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 px-4"
+  >
+    {
+      pokemonsWithSpanishTypes.map((pokemon) => (
+        <div
+          class="pokemon-card block transition-all duration-300 ease-in-out"
+          data-name={pokemon.name.toLowerCase()}
+          data-id={pokemon.id.toString()}
+        >
+          <CardPokemon
+            name={pokemon.name}
+            id={pokemon.id}
+            img={
+              pokemon.sprites.other?.['official-artwork'].front_default || '/default-pokemon.png'
+            }
+            types={pokemon.spanishTypes}
+          />
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Mensaje cuando no hay resultados -->
+  <div
+    id="no-results"
+    class="hidden text-center py-16 px-4"
+  >
+    <div class="max-w-md mx-auto">
+      <div class="text-6xl mb-6">🔍</div>
+      <h3 class="text-2xl font-bold text-white mb-3">No se encontraron Pokémon</h3>
+      <p class="text-slate-400 text-lg mb-6">Intenta buscar con otro nombre o ID</p>
+      <button
+        id="clear-search-btn"
+        class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200"
+      >
+        Limpiar búsqueda
+      </button>
+    </div>
+  </div>
 </div>
+
+<script>
+  interface PokemonCard extends HTMLElement {
+    dataset: {
+      name?: string;
+      id?: string;
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded', (): void => {
+    const searchInput = document.getElementById('pokemon-search') as HTMLInputElement;
+    const pokemonGrid = document.getElementById('pokemon-grid') as HTMLElement;
+    const noResults = document.getElementById('no-results') as HTMLElement;
+    const resultsCount = document.getElementById('results-count') as HTMLElement;
+    const clearButton = document.getElementById('clear-search') as HTMLButtonElement;
+    const clearBtnNoResults = document.getElementById('clear-search-btn') as HTMLButtonElement;
+    const pokemonCards = document.querySelectorAll('.pokemon-card') as NodeListOf<PokemonCard>;
+
+    const totalPokemon: number = pokemonCards.length;
+
+    // Función para actualizar el contador de resultados
+    const updateResultsCount = (visible: number, total: number, searchTerm: string): void => {
+      if (searchTerm === '') {
+        resultsCount.textContent = `${total} Pokémon`;
+      } else {
+        resultsCount.textContent = `${visible} de ${total} Pokémon`;
+      }
+    };
+
+    // Función para mostrar/ocultar el botón de limpiar
+    const toggleClearButton = (show: boolean): void => {
+      clearButton.style.opacity = show ? '1' : '0';
+      clearButton.style.pointerEvents = show ? 'auto' : 'none';
+    };
+
+    // Función principal de filtrado
+    const filterPokemon = (searchTerm: string): void => {
+      const term = searchTerm.toLowerCase().trim();
+      let visibleCount = 0;
+
+      // Filtrar las tarjetas
+      pokemonCards.forEach((card: PokemonCard): void => {
+        const name = card.dataset.name || '';
+        const id = card.dataset.id || '';
+
+        const matchesName = name.includes(term);
+
+        // Si el término es un número, hacer coincidencia exacta por ID
+        // Si no es un número, permitir coincidencias parciales en nombre
+        const isNumericSearch = /^\d+$/.test(term);
+        const matchesId = isNumericSearch ? id === term : false;
+
+        const shouldShow = term === '' || matchesName || matchesId;
+
+        if (shouldShow) {
+          card.style.display = 'block';
+          // Pequeña animación de entrada
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(10px)';
+
+          // Usar requestAnimationFrame para la animación suave
+          requestAnimationFrame(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          });
+
+          visibleCount++;
+        } else {
+          // Animación de salida antes de ocultar
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(-10px)';
+
+          // Ocultar después de la animación
+          setTimeout(() => {
+            if (card.style.opacity === '0') {
+              card.style.display = 'none';
+            }
+          }, 300);
+        }
+      });
+
+      // Manejar estado de no resultados
+      if (visibleCount === 0 && term !== '') {
+        pokemonGrid.classList.add('hidden');
+        noResults.classList.remove('hidden');
+      } else {
+        pokemonGrid.classList.remove('hidden');
+        noResults.classList.add('hidden');
+      }
+
+      // Actualizar contador y botón de limpiar
+      updateResultsCount(visibleCount, totalPokemon, term);
+      toggleClearButton(term !== '');
+    };
+
+    // Función para limpiar la búsqueda
+    const clearSearch = (): void => {
+      searchInput.value = '';
+      filterPokemon('');
+      searchInput.focus();
+    };
+
+    // Event listeners
+    searchInput.addEventListener('input', (): void => {
+      filterPokemon(searchInput.value);
+    });
+
+    searchInput.addEventListener('keydown', (e: KeyboardEvent): void => {
+      if (e.key === 'Escape') {
+        clearSearch();
+      }
+    });
+
+    clearButton.addEventListener('click', clearSearch);
+    clearBtnNoResults.addEventListener('click', clearSearch);
+
+    // Inicializar
+    updateResultsCount(totalPokemon, totalPokemon, '');
+    toggleClearButton(false);
+  });
+</script>
