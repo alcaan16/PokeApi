@@ -73,6 +73,132 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
     </div>
   </div>
 
+  <!-- Filtros por tipo -->
+  <div class="mb-8 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-lg font-semibold text-white mb-4 text-center">Filtrar por tipo</h3>
+      <div
+        class="flex flex-wrap justify-center gap-2"
+        id="type-filters"
+      >
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-slate-700 text-white border-slate-600 hover:bg-slate-600"
+          data-type="all"
+        >
+          Todos
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-red-400 text-black border-red-300 hover:bg-red-300"
+          data-type="Fuego"
+        >
+          🔥 Fuego
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-blue-300 text-black border-blue-200 hover:bg-blue-200"
+          data-type="Agua"
+        >
+          💧 Agua
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-green-200 text-black border-green-100 hover:bg-green-100"
+          data-type="Planta"
+        >
+          🌱 Planta
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-yellow-300 text-black border-yellow-200 hover:bg-yellow-200"
+          data-type="Eléctrico"
+        >
+          ⚡ Eléctrico
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-pink-300 text-black border-pink-200 hover:bg-pink-200"
+          data-type="Psíquico"
+        >
+          🔮 Psíquico
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-blue-200 text-black border-blue-100 hover:bg-blue-100"
+          data-type="Hielo"
+        >
+          ❄️ Hielo
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-indigo-300 text-black border-indigo-200 hover:bg-indigo-200"
+          data-type="Dragón"
+        >
+          🐉 Dragón
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-gray-600 text-white border-gray-500 hover:bg-gray-500"
+          data-type="Siniestro"
+        >
+          🌙 Siniestro
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-red-300 text-black border-red-200 hover:bg-red-200"
+          data-type="Lucha"
+        >
+          👊 Lucha
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-purple-300 text-black border-purple-200 hover:bg-purple-200"
+          data-type="Veneno"
+        >
+          ☠️ Veneno
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-yellow-200 text-black border-yellow-100 hover:bg-yellow-100"
+          data-type="Tierra"
+        >
+          🌍 Tierra
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-indigo-200 text-black border-indigo-100 hover:bg-indigo-100"
+          data-type="Volador"
+        >
+          🪶 Volador
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-gray-400 text-black border-gray-300 hover:bg-gray-300"
+          data-type="Acero"
+        >
+          ⚙️ Acero
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-pink-200 text-black border-pink-100 hover:bg-pink-100"
+          data-type="Hada"
+        >
+          🧚 Hada
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-gray-300 text-black border-gray-200 hover:bg-gray-200"
+          data-type="Normal"
+        >
+          ⚪ Normal
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-yellow-300 text-black border-yellow-200 hover:bg-yellow-200"
+          data-type="Roca"
+        >
+          🪨 Roca
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-green-300 text-black border-green-200 hover:bg-green-200"
+          data-type="Bicho"
+        >
+          🐛 Bicho
+        </button>
+        <button
+          class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border-2 bg-indigo-400 text-white border-indigo-300 hover:bg-indigo-300"
+          data-type="Fantasma"
+        >
+          👻 Fantasma
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Grid de Pokémon -->
   <div
     id="pokemon-grid"
@@ -84,6 +210,7 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
           class="pokemon-card block transition-all duration-300 ease-in-out"
           data-name={pokemon.name.toLowerCase()}
           data-id={pokemon.id.toString()}
+          data-types={pokemon.spanishTypes.join(',')}
         >
           <CardPokemon
             name={pokemon.name}
@@ -122,6 +249,7 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
     dataset: {
       name?: string;
       id?: string;
+      types?: string;
     };
   }
 
@@ -133,16 +261,32 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
     const clearButton = document.getElementById('clear-search') as HTMLButtonElement;
     const clearBtnNoResults = document.getElementById('clear-search-btn') as HTMLButtonElement;
     const pokemonCards = document.querySelectorAll('.pokemon-card') as NodeListOf<PokemonCard>;
+    const typeFilterBtns = document.querySelectorAll(
+      '.type-filter-btn'
+    ) as NodeListOf<HTMLButtonElement>;
 
     const totalPokemon: number = pokemonCards.length;
+    let currentTypeFilter: string = 'all';
+    let currentSearchTerm: string = '';
 
     // Función para actualizar el contador de resultados
-    const updateResultsCount = (visible: number, total: number, searchTerm: string): void => {
-      if (searchTerm === '') {
-        resultsCount.textContent = `${total} Pokémon`;
+    const updateResultsCount = (
+      visible: number,
+      total: number,
+      searchTerm: string,
+      typeFilter: string = 'all'
+    ): void => {
+      let message = '';
+      if (searchTerm === '' && typeFilter === 'all') {
+        message = `${total} Pokémon`;
+      } else if (searchTerm !== '' && typeFilter !== 'all') {
+        message = `${visible} de ${total} Pokémon (${typeFilter} + búsqueda)`;
+      } else if (typeFilter !== 'all') {
+        message = `${visible} de ${total} Pokémon tipo ${typeFilter}`;
       } else {
-        resultsCount.textContent = `${visible} de ${total} Pokémon`;
+        message = `${visible} de ${total} Pokémon`;
       }
+      resultsCount.textContent = message;
     };
 
     // Función para mostrar/ocultar el botón de limpiar
@@ -151,8 +295,23 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
       clearButton.style.pointerEvents = show ? 'auto' : 'none';
     };
 
+    // Función para actualizar estado de botones de tipo
+    const updateTypeButtons = (activeType: string): void => {
+      typeFilterBtns.forEach((btn: HTMLButtonElement): void => {
+        const btnType = btn.dataset.type || 'all';
+        if (btnType === activeType) {
+          btn.classList.add('ring-2', 'ring-blue-400', 'bg-opacity-80');
+        } else {
+          btn.classList.remove('ring-2', 'ring-blue-400', 'bg-opacity-80');
+        }
+      });
+    };
+
     // Función principal de filtrado
-    const filterPokemon = (searchTerm: string): void => {
+    const filterPokemon = (
+      searchTerm: string = currentSearchTerm,
+      typeFilter: string = currentTypeFilter
+    ): void => {
       const term = searchTerm.toLowerCase().trim();
       let visibleCount = 0;
 
@@ -160,15 +319,18 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
       pokemonCards.forEach((card: PokemonCard): void => {
         const name = card.dataset.name || '';
         const id = card.dataset.id || '';
+        const types = card.dataset.types || '';
 
+        // Lógica de búsqueda por texto/ID
         const matchesName = name.includes(term);
-
-        // Si el término es un número, hacer coincidencia exacta por ID
-        // Si no es un número, permitir coincidencias parciales en nombre
         const isNumericSearch = /^\d+$/.test(term);
         const matchesId = isNumericSearch ? id === term : false;
+        const matchesSearch = term === '' || matchesName || matchesId;
 
-        const shouldShow = term === '' || matchesName || matchesId;
+        // Lógica de filtro por tipo
+        const matchesType = typeFilter === 'all' || types.includes(typeFilter);
+
+        const shouldShow = matchesSearch && matchesType;
 
         if (shouldShow) {
           card.style.display = 'block';
@@ -198,7 +360,7 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
       });
 
       // Manejar estado de no resultados
-      if (visibleCount === 0 && term !== '') {
+      if (visibleCount === 0 && (term !== '' || typeFilter !== 'all')) {
         pokemonGrid.classList.add('hidden');
         noResults.classList.remove('hidden');
       } else {
@@ -207,33 +369,51 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
       }
 
       // Actualizar contador y botón de limpiar
-      updateResultsCount(visibleCount, totalPokemon, term);
+      updateResultsCount(visibleCount, totalPokemon, term, typeFilter);
       toggleClearButton(term !== '');
+
+      // Actualizar variables de estado
+      currentSearchTerm = term;
+      currentTypeFilter = typeFilter;
     };
 
-    // Función para limpiar la búsqueda
-    const clearSearch = (): void => {
+    // Función para limpiar todos los filtros
+    const clearAllFilters = (): void => {
       searchInput.value = '';
-      filterPokemon('');
+      currentTypeFilter = 'all';
+      currentSearchTerm = '';
+      updateTypeButtons('all');
+      filterPokemon('', 'all');
       searchInput.focus();
     };
 
-    // Event listeners
+    // Event listeners para búsqueda
     searchInput.addEventListener('input', (): void => {
-      filterPokemon(searchInput.value);
+      filterPokemon(searchInput.value, currentTypeFilter);
     });
 
     searchInput.addEventListener('keydown', (e: KeyboardEvent): void => {
       if (e.key === 'Escape') {
-        clearSearch();
+        clearAllFilters();
       }
     });
 
-    clearButton.addEventListener('click', clearSearch);
-    clearBtnNoResults.addEventListener('click', clearSearch);
+    clearButton.addEventListener('click', clearAllFilters);
+    clearBtnNoResults.addEventListener('click', clearAllFilters);
+
+    // Event listeners para filtros de tipo
+    typeFilterBtns.forEach((btn: HTMLButtonElement): void => {
+      btn.addEventListener('click', (): void => {
+        const selectedType = btn.dataset.type || 'all';
+        currentTypeFilter = selectedType;
+        updateTypeButtons(selectedType);
+        filterPokemon(currentSearchTerm, selectedType);
+      });
+    });
 
     // Inicializar
-    updateResultsCount(totalPokemon, totalPokemon, '');
+    updateResultsCount(totalPokemon, totalPokemon, '', 'all');
     toggleClearButton(false);
+    updateTypeButtons('all');
   });
 </script>
