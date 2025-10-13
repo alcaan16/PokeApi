@@ -1,24 +1,23 @@
 // src/utils/typeColors.ts
 export const typeColors: Record<string, string> = {
-    Normal:      'bg-gray-300',     // suave y neutro
-    Lucha:       'bg-red-300',      // rojo pastel
-    Volador:     'bg-indigo-200',   // lila claro
-    Veneno:      'bg-purple-300',   // morado suave
-    Tierra:      'bg-yellow-200',   // amarillo pálido
-    Roca:        'bg-yellow-300',   // amarillo más cálido pero suave
-    Bicho:       'bg-green-300',    // verde claro
-    Fantasma:    'bg-indigo-400',   // lila medio
-    Acero:       'bg-gray-400',     // neutro medio
-    Fuego:       'bg-red-400',      // rojo suave intermedio
-    Agua:        'bg-blue-300',     // azul claro
-    Planta:      'bg-green-200',    // verde menta claro
-    Eléctrico:   'bg-yellow-300',   // similar a Tierra pero más brillante
-    Psíquico:    'bg-pink-300',     // rosa suave
-    Hielo:       'bg-blue-200',     // azul pálido
-    Dragón:      'bg-indigo-300',   // lila claro
-    Siniestro:   'bg-gray-600',     // gris oscuro suave
-    Hada:        'bg-pink-200',     // rosa muy pálido
-    Desconocido: 'bg-gray-200',     // gris muy claro
-    Sombra:      'bg-gray-500'      // gris medio
-  };
-  
+  Normal: 'bg-gray-500 text-white', // neutro con buen contraste
+  Lucha: 'bg-red-600 text-white', // rojo fuerte
+  Volador: 'bg-indigo-500 text-white', // índigo medio
+  Veneno: 'bg-purple-600 text-white', // morado oscuro
+  Tierra: 'bg-yellow-600 text-white', // amarillo oscuro
+  Roca: 'bg-yellow-700 text-white', // amarillo tierra
+  Bicho: 'bg-green-600 text-white', // verde medio
+  Fantasma: 'bg-indigo-700 text-white', // índigo oscuro
+  Acero: 'bg-gray-600 text-white', // gris medio
+  Fuego: 'bg-red-500 text-white', // rojo vibrante
+  Agua: 'bg-blue-500 text-white', // azul medio
+  Planta: 'bg-green-500 text-white', // verde vibrante
+  Eléctrico: 'bg-yellow-500 text-black', // amarillo vibrante
+  Psíquico: 'bg-pink-500 text-white', // rosa medio
+  Hielo: 'bg-blue-400 text-white', // azul claro
+  Dragón: 'bg-indigo-600 text-white', // índigo fuerte
+  Siniestro: 'bg-gray-800 text-white', // gris muy oscuro
+  Hada: 'bg-pink-400 text-white', // rosa claro
+  Desconocido: 'bg-gray-400 text-white', // gris claro
+  Sombra: 'bg-gray-700 text-white', // gris oscuro
+};

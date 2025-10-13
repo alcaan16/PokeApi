@@ -1,5 +1,5 @@
 ---
-import { typeColors } from "../utils/typeColors";
+import { typeColors } from '../utils/typeColors';
 
 interface Props {
   name: string;
@@ -11,30 +11,66 @@ interface Props {
 const { id, name, img, types } = Astro.props;
 const primaryTypeKey = types[0] ?? 'Desconocido';
 const bgClass = typeColors[primaryTypeKey] ?? 'bg-gray-800';
-console.log(primaryTypeKey)
 ---
 
 <a
   href={`/pokemons/${id}`}
-  class={`flex flex-col items-center rounded-4xl border shadow-md p-4 transition transform hover:scale-105 ${bgClass} border-gray-700`}
-
+  class="group block bg-slate-800/90 border border-slate-600/50 rounded-2xl overflow-hidden hover:border-blue-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 hover:-translate-y-1 backdrop-blur-sm"
 >
-  {
-    img && (
-      <picture class="flex justify-center p-4">
-        <img class="mb-5 rounded-lg" src={img} alt={`Artwork de ${name}`} width="150" />
-      </picture>
-    )
-  }
+  <!-- Imagen -->
+  <div
+    class="relative h-48 bg-gradient-to-b from-slate-700/30 to-slate-800/30 flex items-center justify-center p-4"
+  >
+    <!-- Número ID -->
+    <div class="absolute top-3 right-3 bg-slate-900/70 backdrop-blur-sm px-2 py-1 rounded-lg">
+      <span class="text-xs font-bold text-slate-300">#{String(id).padStart(3, '0')}</span>
+    </div>
 
-  <header class="p-4 flex flex-col items-center text-center">
-    <p class="mb-4 font-light text-black">
-      ID: {id}
-    </p>
-    <h2 class="my-2 text-2xl font-bold tracking-tight text-black">
-      <p>Nombre Pokemon:</p>
-      <p>{name.toUpperCase()}</p>
-    </h2>
-    <p class="text-sm text-black">Tipos: {types.join(', ')}</p>
-  </header>
+    {
+      img && (
+        <picture>
+          <img
+            class="h-32 w-32 object-contain group-hover:scale-110 transition-transform duration-300 drop-shadow-lg"
+            src={img}
+            alt={`Artwork de ${name}`}
+            loading="lazy"
+          />
+        </picture>
+      )
+    }
+  </div>
+
+  <!-- Contenido -->
+  <div class="p-4 bg-slate-800/60 backdrop-blur-sm">
+    <!-- Nombre -->
+    <h3
+      class="text-lg font-bold text-white mb-3 text-center group-hover:text-blue-300 transition-colors duration-300"
+    >
+      {name.charAt(0).toUpperCase() + name.slice(1)}
+    </h3>
+
+    <!-- Tipos -->
+    <div class="flex flex-wrap gap-2 justify-center">
+      {
+        types.map((type) => (
+          <span
+            class={`px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 ${typeColors[type]} hover:scale-105`}
+          >
+            {type}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Overlay de hover -->
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4"
+  >
+    <div
+      class="bg-blue-600/90 backdrop-blur-sm text-white px-4 py-2 rounded-lg font-medium text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
+    >
+      Ver detalles
+    </div>
+  </div>
 </a>

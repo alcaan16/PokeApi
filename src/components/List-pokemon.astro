@@ -11,10 +11,33 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
 });
 ---
 
-<div class="w-full">
+<div class="w-full" style="--tw-bg-opacity: 1;">
+  <!-- Header Hero mejorado -->
+  <div class="relative overflow-hidden pt-12 pb-24 px-4 bg-gradient-to-b from-slate-950 via-purple-900 to-slate-900 mb-12">
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute top-0 left-0 w-96 h-96 bg-red-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20" style="animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;"></div>
+      <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20" style="animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; animation-delay: 2s;"></div>
+      <div class="absolute -bottom-8 left-1/2 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20" style="animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; animation-delay: 4s;"></div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto text-center relative z-10">
+      <h1 class="text-7xl md:text-8xl font-black mb-4">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-red-500">PokéAPI</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-300 mb-6">Explora la Región de Kanto</p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <div class="px-6 py-2 bg-red-500/20 border border-red-500/50 rounded-full backdrop-blur">
+          <p class="text-white font-semibold">150 Pokémon</p>
+        </div>
+        <div class="px-6 py-2 bg-blue-500/20 border border-blue-500/50 rounded-full backdrop-blur">
+          <p class="text-white font-semibold">18 Tipos</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Barra de búsqueda -->
   <div
-    class="sticky top-0 z-20 bg-slate-800/80 backdrop-blur-md border-b border-slate-700 mb-8 py-6"
+    class="sticky top-0 z-20 bg-slate-800/80 backdrop-blur-md border-b border-purple-500/20 mb-8 py-6"
   >
     <div class="max-w-2xl mx-auto px-4">
       <div class="relative">
@@ -36,10 +59,10 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
         <input
           type="text"
           id="pokemon-search"
-          placeholder="Buscar Pokémon por nombre o ID..."
-          class="block w-full pl-12 pr-4 py-4 text-white bg-slate-700/50 border border-slate-600 rounded-2xl
-                 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                 transition-all duration-300 text-lg backdrop-blur-sm"
+          placeholder="Busca por nombre o ID..."
+          class="block w-full pl-12 pr-4 py-3 text-white bg-slate-800/50 border border-purple-500/30 rounded-lg
+                 placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50
+                 transition-all duration-300 backdrop-blur-sm"
         />
         <button
           id="clear-search"
@@ -65,7 +88,7 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
         class="mt-3 text-center"
       >
         <span
-          class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-slate-700/50 text-slate-300 border border-slate-600"
+          class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-slate-700/50 text-slate-300 border border-purple-500/30"
         >
           <span id="results-count">Cargando...</span>
         </span>
