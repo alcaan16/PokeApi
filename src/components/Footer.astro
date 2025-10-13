@@ -5,14 +5,20 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-gray-900 text-gray-400 font-sans py-12">
-  <div class="container mx-auto px-6 lg:px-8">
+<footer
+  class="bg-slate-900/90 backdrop-blur-sm border-t border-slate-700 text-slate-300 font-sans py-12 mt-16"
+>
+  <div class="container mx-auto px-6 lg:px-8 max-w-5xl">
     <div
       class="flex flex-col md:flex-row justify-between text-center md:text-left space-y-8 md:space-y-0"
     >
       <div class="flex-1">
-        <h3 class="text-white text-xl font-bold mb-2">ALCAAN</h3>
-        <p class="text-sm">Desarrollador Web</p>
+        <h3
+          class="text-white text-xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+        >
+          ALCAAN
+        </h3>
+        <p class="text-sm text-slate-400">Desarrollador Web</p>
       </div>
 
       <div class="flex-1">
@@ -21,20 +27,23 @@ const currentYear = new Date().getFullYear();
           <li>
             <a
               href="#proyectos"
-              class="hover:text-blue-400 transition-colors"
-              >Proyectos</a>
+              class="hover:text-blue-400 transition-colors duration-200 text-sm"
+              >Proyectos</a
+            >
           </li>
           <li>
             <a
               href="#sobre-mi"
-              class="hover:text-blue-400 transition-colors"
-              >Sobre mí</a>
+              class="hover:text-blue-400 transition-colors duration-200 text-sm"
+              >Sobre mí</a
+            >
           </li>
           <li>
             <a
               href="#blog"
-              class="hover:text-blue-400 transition-colors"
-              >Blog</a>
+              class="hover:text-blue-400 transition-colors duration-200 text-sm"
+              >Blog</a
+            >
           </li>
         </ul>
       </div>
@@ -46,29 +55,32 @@ const currentYear = new Date().getFullYear();
             href="https://github.com/alcaan16"
             target="_blank"
             rel="noopener noreferrer"
-            class="hover:text-blue-400 transition-colors"
+            class="hover:text-blue-400 transition-colors duration-200 text-sm"
             >GitHub</a
           >
           <a
             href="#"
             target="_blank"
             rel="noopener noreferrer"
-            class="hover:text-blue-400 transition-colors"
+            class="hover:text-blue-400 transition-colors duration-200 text-sm"
             >LinkedIn</a
           >
           <a
             href="#"
             target="_blank"
             rel="noopener noreferrer"
-            class="hover:text-blue-400 transition-colors"
+            class="hover:text-blue-400 transition-colors duration-200 text-sm"
             >Twitter</a
           >
         </div>
       </div>
     </div>
 
-    <div class="text-center text-xs mt-10 pt-6 border-t border-gray-700">
-      <p>&copy; {currentYear} Angel Alferez Castro | Todos los derechos reservados.</p>
+    <div class="text-center text-xs mt-10 pt-6 border-t border-slate-700">
+      <p class="text-slate-400">
+        &copy; {currentYear} Angel Alferez Castro | Todos los derechos reservados.
+      </p>
+      <p class="text-slate-500 mt-1">Construido con ❤️ usando Astro & Tailwind CSS</p>
     </div>
   </div>
 </footer>

@@ -10,7 +10,10 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html
+  lang="es"
+  class="h-full"
+>
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -28,20 +31,17 @@ const { title } = Astro.props;
     />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen pb-32">
+  <body class="h-full flex flex-col bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
     <Header />
-    <main class="max-w-5xl px-4 m-auto">
+    <main class="flex-1 max-w-5xl px-4 mx-auto w-full">
       <slot />
     </main>
-  </body>
-  <footer>
     <Footer />
-  </footer>
+  </body>
 </html>
 
 <style is:global>
   html {
-    background: linear-gradient(to bottom, #020617, #581c87, #0f172a);
     color-scheme: dark light;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
