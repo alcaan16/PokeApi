@@ -242,6 +242,27 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
       </button>
     </div>
   </div>
+
+  <!-- Botón para subir al top -->
+  <button
+    id="scroll-to-top"
+    class="fixed bottom-6 right-6 z-30 w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transform transition-all duration-300 opacity-0 scale-0 pointer-events-none hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-800"
+    aria-label="Subir al inicio"
+  >
+    <svg
+      class="w-6 h-6 mx-auto"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M5 10l7-7m0 0l7 7m-7-7v18"
+      ></path>
+    </svg>
+  </button>
 </div>
 
 <script>
@@ -264,6 +285,7 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
     const typeFilterBtns = document.querySelectorAll(
       '.type-filter-btn'
     ) as NodeListOf<HTMLButtonElement>;
+    const scrollToTopBtn = document.getElementById('scroll-to-top') as HTMLButtonElement;
 
     const totalPokemon: number = pokemonCards.length;
     let currentTypeFilter: string = 'all';
@@ -304,6 +326,28 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
         } else {
           btn.classList.remove('ring-2', 'ring-blue-400', 'bg-opacity-80');
         }
+      });
+    };
+
+    // Función para mostrar/ocultar botón scroll to top
+    const toggleScrollToTopButton = (): void => {
+      const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      const showButton = scrollPosition > 300; // Mostrar después de 300px de scroll
+
+      if (showButton) {
+        scrollToTopBtn.classList.remove('opacity-0', 'scale-0', 'pointer-events-none');
+        scrollToTopBtn.classList.add('opacity-100', 'scale-100');
+      } else {
+        scrollToTopBtn.classList.add('opacity-0', 'scale-0', 'pointer-events-none');
+        scrollToTopBtn.classList.remove('opacity-100', 'scale-100');
+      }
+    };
+
+    // Función para hacer scroll suave hacia arriba
+    const scrollToTop = (): void => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
       });
     };
 
@@ -410,6 +454,13 @@ const pokemonsWithSpanishTypes = pokemons.map((pokemon) => {
         filterPokemon(currentSearchTerm, selectedType);
       });
     });
+
+    // Event listeners para scroll to top
+    scrollToTopBtn.addEventListener('click', scrollToTop);
+    window.addEventListener('scroll', toggleScrollToTopButton);
+
+    // Verificar posición inicial del scroll
+    toggleScrollToTopButton();
 
     // Inicializar
     updateResultsCount(totalPokemon, totalPokemon, '', 'all');
