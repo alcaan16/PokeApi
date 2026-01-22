@@ -1,9 +1,6 @@
 import {
   type PokemonListResponse,
-  type Species,
-  type EvolutionChainResponse,
   type PokemonSpecies,
-  type TypePokemon,
 } from '../types/api';
 import { type PokemonDetail } from '../types/api';
 
