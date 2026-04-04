@@ -3,6 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import { allPokemonDetails, getPokemonById } from '../../services/pokemon';
 import { type PokemonDetail } from '../../types/api.ts';
 import FooterListPokemon from '../../components/FooterListPokemon.astro';
+import { typeTranslations } from '../../utils/typeTranslations';
+import { typeColors } from '../../utils/typeColors';
 
 const { id } = Astro.params;
 
@@ -44,13 +46,17 @@ export async function getStaticPaths() {
                   {pokemon.name}
                 </h1>
                 <div class="flex flex-wrap justify-center gap-2">
-                  {pokemon.types.map((type) => (
-                    <span
-                      class={`px-3 py-1 rounded-full text-sm font-semibold bg-${type.type.name} text-white`}
-                    >
-                      {type.type.name}
-                    </span>
-                  ))}
+                  {pokemon.types.map((typeItem) => {
+                    const spanishType = typeTranslations[typeItem.type.name] ?? typeItem.type.name;
+                    const typeColorClass = typeColors[spanishType] ?? 'bg-gray-500 text-white';
+                    return (
+                      <span
+                        class={`px-3 py-1 rounded-full text-sm font-semibold ${typeColorClass}`}
+                      >
+                        {spanishType}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             </div>

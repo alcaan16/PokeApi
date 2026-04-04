@@ -9,8 +9,6 @@ interface Props {
 }
 
 const { id, name, img, types } = Astro.props;
-const primaryTypeKey = types[0] ?? 'Desconocido';
-const bgClass = typeColors[primaryTypeKey] ?? 'bg-gray-800';
 ---
 
 <a
