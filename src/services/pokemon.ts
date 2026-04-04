@@ -91,7 +91,7 @@ export const allPokemonDetails = async () => {
       return cache.get(cacheKey) as PokemonDetail[];
     }
 
-    const response = await fetchWithRetry('https://pokeapi.co/api/v2/pokemon?limit=150');
+    const response = await fetchWithRetry('https://pokeapi.co/api/v2/pokemon?limit=151');
     const { results } = (await response.json()) as PokemonListResponse;
 
     // Procesar los Pokémon en lotes de 5 para no sobrecargar la API
