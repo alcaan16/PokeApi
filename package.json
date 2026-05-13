@@ -5,10 +5,12 @@
   "type": "module",
   "author": "",
   "license": "MIT",
+  "packageManager": "pnpm@11.1.1",
   "engines": {
     "node": ">=18.0.0"
   },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
@@ -33,7 +35,8 @@
   },
   "pnpm": {
     "overrides": {
-      "yaml": "^2.8.3"
+      "yaml": "^2.8.3",
+      "fast-uri": "^3.1.2"
     }
   }
 }
