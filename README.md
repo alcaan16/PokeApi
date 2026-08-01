@@ -28,3 +28,4 @@ Este proyecto ha sido construido utilizando las últimas tecnologías web para a
 
 ---
 *Desarrollado por Ángel. Si te gusta el proyecto, ¡visita la web!*
+*Desplegado en alcaan16.es · Astro + Tailwind + TypeScript.*
