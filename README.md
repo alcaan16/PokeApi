@@ -27,5 +27,5 @@ Este proyecto ha sido construido utilizando las últimas tecnologías web para a
 - **TypeScript**: Para garantizar la robustez del código.
 
 ---
-*Desarrollado por Ángel. Si te gusta el proyecto, ¡visita la web!*
-*Desplegado en alcaan16.es · Astro + Tailwind + TypeScript.*
+-*Desarrollado por Ángel. Si te gusta el proyecto, ¡visita la web!
+-*Desplegado en alcaan16.es · Astro + Tailwind + TypeScript.
