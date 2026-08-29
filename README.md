@@ -7,7 +7,7 @@ Explora el mundo Pokémon en esta aplicación web rápida, moderna y elegante. D
 
 ## 🌐 Demo en Vivo
 
-Visita la aplicación funcionando en: **[https://alcaan16.es/](https://alcaan16.es/)**
+Visita la aplicación funcionando en: **[https://pokedex-alcaan16.netlify.app/](https://pokedex-alcaan16.netlify.app/)**
 
 ## ✨ ¿Qué puedes hacer?
 
@@ -27,5 +27,5 @@ Este proyecto ha sido construido utilizando las últimas tecnologías web para a
 - **TypeScript**: Para garantizar la robustez del código.
 
 ---
-Desarrollado por Ángel con · Astro + Tailwind + TypeScript. Si te gusta el proyecto, ¡visita la web **[https://alcaan16.es/](https://alcaan16.es/)** !
+Desarrollado por Ángel con · Astro + Tailwind + TypeScript. Si te gusta el proyecto, ¡visita la web **[https://pokedex-alcaan16.netlify.app/](https://pokedex-alcaan16.netlify.app/)** !
 
