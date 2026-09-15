@@ -7,7 +7,7 @@
   "license": "MIT",
   "packageManager": "pnpm@11.1.1",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.12.0"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -18,25 +18,18 @@
     "astro": "astro",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "clean": "Remove-Item -Recurse -Force .astro, dist",
+    "clean": "node -e \"fs.rmSync('.astro',{recursive:true,force:true});fs.rmSync('dist',{recursive:true,force:true})\"",
     "check": "astro check"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.8",
-    "astro": "^5.18.1",
+    "@astrojs/check": "^0.9.10",
+    "astro": "^7.3.2",
     "typescript": "^6.0.2"
   },
   "devDependencies": {
-    "@astrojs/tailwind": "^5.1.5",
-    "autoprefixer": "^10.4.27",
+    "@tailwindcss/vite": "^4.3.3",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
-    "tailwindcss": "^3.4.19"
-  },
-  "pnpm": {
-    "overrides": {
-      "yaml": "^2.8.3",
-      "fast-uri": "^3.1.2"
-    }
+    "tailwindcss": "^4.3.3"
   }
 }

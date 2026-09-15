@@ -16,7 +16,7 @@ if (id) {
 export async function getStaticPaths() {
   const pokemons = await allPokemonDetails();
   return pokemons.map((poke) => ({
-    params: { id: poke.id },
+    params: { id: String(poke.id) },
   }));
 }
 ---
@@ -122,6 +122,6 @@ export async function getStaticPaths() {
         )
       }
     </div>
-    <FooterListPokemon id={id} />
+    <FooterListPokemon id={Number(id)} />
   </div>
 </Layout>
