@@ -1,0 +1,5 @@
+# Astro 7 requiere Node >= 22.12.0 (ver engines.node en package.json).
+# Se fija aquí para que el build de Netlify no dependa del valor por
+# defecto del panel, que en sitios antiguos puede seguir en Node 18.
+[build.environment]
+  NODE_VERSION = "22.12.0"

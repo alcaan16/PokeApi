@@ -1,7 +1,7 @@
 # 🦅 PokeAPI Viewer
 
-![Astro](https://img.shields.io/badge/Astro-5.0-orange?style=for-the-badge&logo=astro)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Astro](https://img.shields.io/badge/Astro-7.3-orange?style=for-the-badge&logo=astro)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-4.3-38B2AC?style=for-the-badge&logo=tailwind-css)
 
 Explora el mundo Pokémon en esta aplicación web rápida, moderna y elegante. Diseñada para ofrecer la mejor experiencia de usuario al consultar información de la famosa [PokeAPI](https://pokeapi.co/).
 
