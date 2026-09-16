@@ -1,7 +1,159 @@
 ---
-import Layout from '../layouts/Layout.astro'
+import Layout from '../layouts/Layout.astro';
+
+const caracteristicas = [
+  {
+    titulo: '151 Pokémon de Kanto',
+    texto:
+      'La primera generación al completo, de Bulbasaur a Mew, con su artwork oficial, tipos, altura, peso y estadísticas base.',
+  },
+  {
+    titulo: 'Filtro por tipo',
+    texto:
+      'Los 18 tipos, traducidos al español. Un clic acota la lista al tipo que te interese sin recargar la página.',
+  },
+  {
+    titulo: 'Búsqueda instantánea',
+    texto:
+      'Busca por nombre o por número de la Pokédex. El filtrado ocurre en el navegador, así que responde al momento.',
+  },
+  {
+    titulo: 'Ficha de detalle',
+    texto:
+      'Cada Pokémon tiene su propia página, con enlaces al anterior y al siguiente para recorrer la Pokédex en orden.',
+  },
+];
+
+const stack = [
+  { nombre: 'Astro', version: '7.3', nota: 'Generación estática y componentes .astro' },
+  { nombre: 'Tailwind CSS', version: '4.3', nota: 'Estilos mediante utilidades, configuración CSS-first' },
+  { nombre: 'TypeScript', version: '6.0', nota: 'Tipado de las respuestas de la API' },
+];
 ---
 
-<Layout title="Pagina About del proyecto PokeApi">
-  <h1>Esta es la pagina About del proyecto PokeApi</h1>
+<Layout title="Sobre el proyecto | PokeAPI Explorer">
+  <section class="py-12">
+    <h1 class="text-5xl md:text-6xl font-black mb-4 text-center">
+      <span
+        class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-red-500"
+      >
+        Sobre el proyecto
+      </span>
+    </h1>
+    <p class="text-lg md:text-xl text-gray-300 text-center max-w-2xl mx-auto">
+      Un explorador de la Pokédex de Kanto construido para aprender Astro a fondo,
+      con datos reales y sin atajos.
+    </p>
+
+    <div class="flex gap-4 justify-center flex-wrap mt-8">
+      <div class="px-6 py-2 bg-red-500/20 border border-red-500/50 rounded-full backdrop-blur">
+        <p class="text-white font-semibold">151 Pokémon</p>
+      </div>
+      <div class="px-6 py-2 bg-blue-500/20 border border-blue-500/50 rounded-full backdrop-blur">
+        <p class="text-white font-semibold">18 Tipos</p>
+      </div>
+      <div class="px-6 py-2 bg-purple-500/20 border border-purple-500/50 rounded-full backdrop-blur">
+        <p class="text-white font-semibold">154 Páginas estáticas</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-12">
+    <h2 class="text-white text-2xl font-bold mb-6">Qué puedes hacer</h2>
+    <div class="grid gap-4 sm:grid-cols-2">
+      {
+        caracteristicas.map((c) => (
+          <article class="bg-slate-800/90 border border-slate-600/50 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:border-blue-400/50">
+            <h3 class="text-white font-semibold mb-2">{c.titulo}</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">{c.texto}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="pb-12">
+    <h2 class="text-white text-2xl font-bold mb-6">Cómo está construido</h2>
+    <div class="bg-slate-800/90 border border-slate-600/50 rounded-2xl p-6 backdrop-blur-sm">
+      <p class="text-sm text-slate-300 leading-relaxed mb-4">
+        El sitio es <strong class="text-white">completamente estático</strong>. Las 154
+        páginas se generan durante el build, así que el navegador solo recibe HTML y CSS
+        ya montados: no hay servidor detrás ni se consulta la API cuando entras.
+      </p>
+      <p class="text-sm text-slate-300 leading-relaxed mb-4">
+        Toda la carga contra <a
+          href="https://pokeapi.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-blue-400 hover:text-blue-300 transition-colors duration-200"
+          >PokeAPI</a
+        > ocurre una sola vez, al compilar. Para no castigar a un servicio público y
+        gratuito, la capa de servicios aplica tres medidas:
+      </p>
+      <ul class="space-y-3">
+        <li class="text-sm text-slate-300 leading-relaxed">
+          <strong class="text-white">Peticiones por lotes.</strong> Se piden de cinco en cinco
+          en vez de lanzar 151 llamadas a la vez.
+        </li>
+        <li class="text-sm text-slate-300 leading-relaxed">
+          <strong class="text-white">Reintentos con espera.</strong> Hasta tres intentos por
+          recurso, con un segundo de pausa entre ellos, para absorber fallos puntuales de red.
+        </li>
+        <li class="text-sm text-slate-300 leading-relaxed">
+          <strong class="text-white">Caché en memoria.</strong> Cada recurso se descarga una
+          única vez por build, aunque varias páginas lo necesiten.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="pb-12">
+    <h2 class="text-white text-2xl font-bold mb-6">Stack</h2>
+    <div class="grid gap-4 sm:grid-cols-3">
+      {
+        stack.map((t) => (
+          <article class="bg-slate-800/90 border border-slate-600/50 rounded-2xl p-6 backdrop-blur-sm">
+            <div class="flex items-baseline gap-2 mb-2">
+              <h3 class="text-white font-semibold">{t.nombre}</h3>
+              <span class="text-xs text-slate-400">{t.version}</span>
+            </div>
+            <p class="text-sm text-slate-300 leading-relaxed">{t.nota}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="pb-16">
+    <h2 class="text-white text-2xl font-bold mb-6">Datos y licencia</h2>
+    <div class="bg-slate-800/90 border border-slate-600/50 rounded-2xl p-6 backdrop-blur-sm">
+      <p class="text-sm text-slate-300 leading-relaxed mb-4">
+        Los datos y las imágenes proceden de <a
+          href="https://pokeapi.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-blue-400 hover:text-blue-300 transition-colors duration-200"
+          >PokeAPI</a
+        >. Pokémon es una marca registrada de Nintendo, Game Freak y The Pokémon Company;
+        este proyecto no está afiliado a ellos y se publica sin ánimo de lucro.
+      </p>
+      <p class="text-sm text-slate-300 leading-relaxed mb-6">
+        El código es abierto, bajo licencia MIT: puedes leerlo, copiarlo y adaptarlo.
+      </p>
+      <div class="flex gap-4 flex-wrap">
+        <a
+          href="https://github.com/alcaan16/PokeApi"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-6 py-2 bg-blue-500/20 border border-blue-500/50 rounded-full backdrop-blur text-white font-semibold text-sm hover:border-blue-400 transition-colors duration-200"
+          >Ver el código</a
+        >
+        <a
+          href="/"
+          class="px-6 py-2 bg-slate-700/50 border border-slate-600/50 rounded-full backdrop-blur text-white font-semibold text-sm hover:border-slate-400 transition-colors duration-200"
+          >Volver a la Pokédex</a
+        >
+      </div>
+    </div>
+  </section>
 </Layout>
