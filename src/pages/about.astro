@@ -1,9 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { POKEMON_COUNT } from '../services/pokemon';
+
+// Páginas del sitio: una por Pokémon más portada, About y 404.
+const TOTAL_PAGINAS = POKEMON_COUNT + 3;
 
 const caracteristicas = [
   {
-    titulo: '151 Pokémon de Kanto',
+    titulo: `${POKEMON_COUNT} Pokémon de Kanto`,
     texto:
       'La primera generación al completo, de Bulbasaur a Mew, con su artwork oficial, tipos, altura, peso y estadísticas base.',
   },
@@ -47,13 +51,13 @@ const stack = [
 
     <div class="flex gap-4 justify-center flex-wrap mt-8">
       <div class="px-6 py-2 bg-red-500/20 border border-red-500/50 rounded-full backdrop-blur">
-        <p class="text-white font-semibold">151 Pokémon</p>
+        <p class="text-white font-semibold">{POKEMON_COUNT} Pokémon</p>
       </div>
       <div class="px-6 py-2 bg-blue-500/20 border border-blue-500/50 rounded-full backdrop-blur">
         <p class="text-white font-semibold">18 Tipos</p>
       </div>
       <div class="px-6 py-2 bg-purple-500/20 border border-purple-500/50 rounded-full backdrop-blur">
-        <p class="text-white font-semibold">154 Páginas estáticas</p>
+        <p class="text-white font-semibold">{TOTAL_PAGINAS} Páginas estáticas</p>
       </div>
     </div>
   </section>
@@ -76,7 +80,7 @@ const stack = [
     <h2 class="text-white text-2xl font-bold mb-6">Cómo está construido</h2>
     <div class="bg-slate-800/90 border border-slate-600/50 rounded-2xl p-6 backdrop-blur-sm">
       <p class="text-sm text-slate-300 leading-relaxed mb-4">
-        El sitio es <strong class="text-white">completamente estático</strong>. Las 154
+        El sitio es <strong class="text-white">completamente estático</strong>. Las {TOTAL_PAGINAS}
         páginas se generan durante el build, así que el navegador solo recibe HTML y CSS
         ya montados: no hay servidor detrás ni se consulta la API cuando entras.
       </p>
@@ -93,7 +97,7 @@ const stack = [
       <ul class="space-y-3">
         <li class="text-sm text-slate-300 leading-relaxed">
           <strong class="text-white">Peticiones por lotes.</strong> Se piden de cinco en cinco
-          en vez de lanzar 151 llamadas a la vez.
+          en vez de lanzar {POKEMON_COUNT} llamadas a la vez.
         </li>
         <li class="text-sm text-slate-300 leading-relaxed">
           <strong class="text-white">Reintentos con espera.</strong> Hasta tres intentos por

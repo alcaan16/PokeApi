@@ -4,6 +4,10 @@ import {
 } from '../types/api';
 import { type PokemonDetail } from '../types/api';
 
+// Número de Pokémon que cubre la Pokédex: la primera generación completa,
+// de Bulbasaur (1) a Mew (151). Es la única fuente de verdad del rango.
+export const POKEMON_COUNT = 151;
+
 // Cache para almacenar las respuestas
 const cache = new Map<string, any>();
 
@@ -91,7 +95,9 @@ export const allPokemonDetails = async () => {
       return cache.get(cacheKey) as PokemonDetail[];
     }
 
-    const response = await fetchWithRetry('https://pokeapi.co/api/v2/pokemon?limit=151');
+    const response = await fetchWithRetry(
+      `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_COUNT}`
+    );
     const { results } = (await response.json()) as PokemonListResponse;
 
     // Procesar los Pokémon en lotes de 5 para no sobrecargar la API
