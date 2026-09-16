@@ -1,5 +1,5 @@
-# Astro 7 requiere Node >= 22.12.0 (ver engines.node en package.json).
-# Se fija aquí para que el build de Netlify no dependa del valor por
-# defecto del panel, que en sitios antiguos puede seguir en Node 18.
+# Node 24 LTS: es la misma major con la que se desarrolla y prueba en local.
+# El mínimo real no lo marca Astro 7 (>=22.12.0) sino pnpm 11 (>=22.13),
+# así que no basta con 22.12.
 [build.environment]
-  NODE_VERSION = "22.12.0"
+  NODE_VERSION = "24"
